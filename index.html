@@ -54,12 +54,15 @@
         <h1>Download IPTV Files</h1>
         <p>Click the links below to download the IPTV files:</p>
         <ul class="file-list">
-            <li><a href="TVipv4.m3u" download>Download TVipv4.m3u</a></li>
-            <li><a href="TVipv6.txt" download>Download TVipv6.txt</a></li>
-            <li><a href="TVipv4.txt" download>Download TVipv4.txt</a></li>
-            <li><a href="zy.m3u" download>Download zy.m3u</a></li>
-            <li><a href="zy.txt" download>Download zy.txt</a></li>
-            <li><a href="gd.txt" download>Download gd.txt</a></li>
+            <?php
+                $directory = './'; // Specify the directory containing files
+                $files = array_diff(scandir($directory), array('..', '.')); // Scan directory and exclude . and ..
+                foreach ($files as $file) {
+                    if (is_file($directory . $file)) {
+                        echo "<li><a href=\"$file\" download>Download $file</a></li>";
+                    }
+                }
+            ?>
         </ul>
     </div>
 </body>
